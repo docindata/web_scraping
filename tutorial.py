@@ -3,7 +3,7 @@
 Starting with a simple py.file
 """
 # %%
-import requests
+import requests 
 import bs4 # type: ignore
 from bs4 import BeautifulSoup # type: ignore
 # %%
@@ -34,3 +34,8 @@ soup: BeautifulSoup = BeautifulSoup(result.text, "lxml")
 # 4. Xpath
 box: bs4.element.Tag = soup.find('article', class_='main-article') # Simply locating the section
 # %%
+def get_text(tag: bs4.element.Tag) -> int:
+    """
+    Gets the text from a tag
+    """
+    return tag.text
