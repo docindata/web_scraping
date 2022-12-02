@@ -14,7 +14,9 @@ Now lets get HTML from a website with Titanic
 """
 # %%
 website: str = r"https://subslikescript.com/movie/Titanic-120338"
-result: requests.models.Response = requests.get(website, timeout = 5)  # pylint: disable=W3101
+result: requests.models.Response = requests.get(
+    website, timeout=5
+)  # pylint: disable=W3101
 soup: BeautifulSoup = BeautifulSoup(result.text, "lxml")
 """
 finding elements with a recommended order
@@ -27,7 +29,7 @@ box: bs4.element.Tag = soup.find(
     "article", class_="main-article"
 )  # Simply locating the section
 # %%
-def get_text_from_website(url: str) -> str:
+def get_text_from_website(url: str, timeout: int = 5) -> str:
     """_summary_
 
     Args:
@@ -36,15 +38,14 @@ def get_text_from_website(url: str) -> str:
     Returns:
         str: _description_
     """
-    response: requests.models.Response = requests.get(url, timeout=5)
+    response: requests.models.Response = requests.get(url, timeout=timeout)
     pretty_soup: BeautifulSoup = BeautifulSoup(response.text, "lxml").prettify()
     return pretty_soup
 
-
 # %%
-soup_titanic: str = get_text_from_website(website)
-print(soup_titanic)
-print(type(soup_titanic))
+soup_titanic_1: str = get_text_from_website(website)
+print(soup_titanic_1)
+print(type(soup_titanic_1))
 
 # %% [markdown]
 """
@@ -55,10 +56,24 @@ mentioned before.
 An idea I want to explore is resaturant in the website: The fork.
 """
 # %%
-spoton_url: str = r'https://www.thefork.se/restaurang/spoton-restaurang-r384077'
-result_spoton: requests.models.Response = requests.get(spoton_url, timeout=5)
-content_spoton: str = result_spoton.text
-soup_spoton: BeautifulSoup = BeautifulSoup(content_spoton, "lxml")
-menu_spoton: bs4.element.Tag = soup_spoton.find("dl", role="presentation")
+titanic_url: str = r"https://subslikescript.com/movie/Titanic-120338"
+result_titanic: requests.models.Response = requests.get(titanic_url, timeout=5)
+content_titanic: str = result_titanic.text
+soup_titanic: BeautifulSoup = BeautifulSoup(content_titanic, "lxml")
+menu_titanic: bs4.element.Tag = soup_titanic.find("article", class_="main-article")
+print(menu_titanic)
+
 # %%
-print(menu_spoton)
+title_titanic: str = menu_titanic.find("h1").get_text()
+print(title_titanic)
+# %%
+transcript_titanic: str = menu_titanic.find("div", class_="full-script").get_text()
+print(transcript_titanic)
+# To put spaces between the lines we can add a couple of params in the get_text() method
+
+# strip: Bool. Removes trailing and preceeding spaces in lines
+# seperator: str. Add space between words from different lines.
+transcript_titanic: str = menu_titanic.find("div", class_="full-script").get_text( # type: ignore
+    strip=True, separator=" "
+)
+print(transcript_titanic)
