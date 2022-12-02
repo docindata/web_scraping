@@ -8,3 +8,4 @@ model.
 
 1. Restaurant data: Scrape data about all Gothenburg's restaurants in the website the fork and analyze the data
 to uncover the most popular restaurants.
+
