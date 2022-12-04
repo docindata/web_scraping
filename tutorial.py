@@ -42,6 +42,7 @@ def get_text_from_website(url: str, timeout: int = 5) -> str:
     pretty_soup: BeautifulSoup = BeautifulSoup(response.text, "lxml").prettify()
     return pretty_soup
 
+
 # %%
 soup_titanic_1: str = get_text_from_website(website)
 print(soup_titanic_1)
@@ -73,7 +74,7 @@ print(transcript_titanic)
 
 # strip: Bool. Removes trailing and preceeding spaces in lines
 # seperator: str. Add space between words from different lines.
-transcript_titanic: str = menu_titanic.find("div", class_="full-script").get_text( # type: ignore
+transcript_titanic: str = menu_titanic.find("div", class_="full-script").get_text(  # type: ignore
     strip=True, separator=" "
 )
 print(transcript_titanic)
