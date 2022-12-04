@@ -52,3 +52,4 @@ When using Selenium there are more options to locate element:
 6. Link text
 For example
 """
+ 
