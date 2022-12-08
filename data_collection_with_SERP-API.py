@@ -6,6 +6,7 @@ Let's get data from a SERP-API
 # %%
 
 import os
+from typing import Any
 import serpapi
 from serpapi import GoogleSearch
 import pandas as pd
@@ -21,7 +22,7 @@ coords: dict[str, str] = {
 }
 
 # The params needed for the API request
-params: dict[str, any] = {
+params: dict[str, Any] = {
     "api_key": os.getenv("SERP_API_KEY"),
     "device": "desktop",
     "engine": "google_maps",
@@ -51,8 +52,8 @@ for area, coord in coords.items():
                 df: pd.DataFrame = pd.concat(
                     [df, pd.DataFrame(search.get_dict()["local_results"])]
                 )
-            except:
-                break
+            except Exception:
+                pass
         else:
             if "next" in results["serpapi_pagination"]:
                 params["start"]: int = start_num
@@ -62,10 +63,9 @@ for area, coord in coords.items():
                     df: pd.DataFrame = pd.concat(
                         [df, pd.DataFrame(search.get_dict()["local_results"])]
                     )
-                except:
-                    break
+                except Exception:
+                    pass
             else:
                 break
 
-df.to_csv('data_1.csv')
-
+df.to_csv("data_1.csv")
