@@ -38,7 +38,7 @@ params: dict[str, Any] = {
 # Empty pandas dataframe to append data to.
 df: pd.DataFrame = pd.DataFrame()
 
-
+# mypy
 for area, coord in coords.items():
     print(f"Running {area}")
     params["ll"]: str = coord

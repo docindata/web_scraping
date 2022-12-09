@@ -9,9 +9,9 @@ model.
 1. Restaurant data: Scrape data about all Gothenburg's restaurants in the website the fork and analyze the data
 to uncover the most popular restaurants.
 
-2. Restaurant data: Use Google's native API (Places API) to query restaurants in Gothenburg and analyze the data
+2. Restaurant data: Use SERP-api to query restaurants in Gothenburg and analyze the data
 
-3. Build a dashboard to share the results of the analysis
+3. Build a dashboard to share the results of the analysis (Bokeh, Streamlit, Dash, etc.)
 
 ## Lessons
 
@@ -19,6 +19,9 @@ to uncover the most popular restaurants.
 To detect those inspect webiste, go to settings --> debugging --> Disable JS. If website changes or doesn't work it uses JS.
 
 2. Web scraping is not difficult in itself but companies have made it challenging by using bot-detection and adding captchas, there is also the risk for getting your IP blocked from websites such as Google. 
+
+3. Google's Places API was tried and seemed initially like a good tool. However it's not
+possible to get more that 60 per query.
 
 ## Features
 
